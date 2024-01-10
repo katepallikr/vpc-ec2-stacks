@@ -20,12 +20,12 @@ Two components are used:
 
 Without Terraform's new concept of _deferred changes_, the configuration here would fail as follows:
 
-TODO image
+![CleanShot 2024-01-10 at 14 35 36](https://github.com/hashicorp/vpc-ec2-stack/assets/2430490/78c67a81-2647-4797-949b-b191b80edeaf)
 
 Although there are ways in current-day Terraform to avoid the error in this specific example (you
 can directly reference the subnets from the VPC module instead of using a data source to query them
-separately after creation; you can use resource targeting to manually hide the EC2 infrastructure
-from Terraform until appropriate), this example demonstrates the concept of _deferred changes_
+separately after creation, or you can use tedious resource targeting to manually hide the EC2 infrastructure
+from Terraform until appropriate), this example demonstrates the broader concept of _deferred changes_
 clearly: Terraform understands that in order to fetch the appropriate subnets in one component, a
 partial plan must be applied and the stack replanned afterward to resolve unknown values only known
 after apply. Replanning continues until the all resources are applied no further changes are
