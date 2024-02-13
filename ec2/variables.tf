@@ -1,6 +1,9 @@
-variable "vpc_id" {
-  description = "The VPC ID created by the previous component"
-  type = string
+variable "network" {
+  description = "Information about network objects declared elsewhere."
+  type = object({
+    vpc_id             = string
+    private_subnet_ids = set(string)
+  })
 }
 
 variable "key_pair_name" {
