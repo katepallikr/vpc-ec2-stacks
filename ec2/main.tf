@@ -1,19 +1,12 @@
-data "aws_subnets" "dev_subnet" {
-  filter {
-    name   = "vpc-id"
-    values = [var.vpc_id]
-  }
-
-  tags = {
-    "Environment" = "terraform-stacks-preview*"
-  }
+terraform {
+  experiments = [ unknown_instances ]
 }
 
 # Create an EC2 instance running Ubuntu in each subnet
 resource "aws_instance" "example" {
-  for_each = toset(data.aws_subnets.dev_subnet.ids)
+  for_each = var.network.private_subnet_ids
 
-  ami           = data.aws_ami.ubuntu.id
+  ami           = "ami-0353305cd3c20be96"
   instance_type = "t2.micro"
   subnet_id     = each.value
   vpc_security_group_ids = [aws_security_group.allow_ssh.id]
@@ -25,7 +18,7 @@ resource "aws_instance" "example" {
 resource "aws_security_group" "allow_ssh" {
   name        = "allow_ssh"
   description = "Allow SSH inbound traffic"
-  vpc_id      = var.vpc_id
+  vpc_id      = var.network.vpc_id
 
   ingress {
     from_port   = 22
