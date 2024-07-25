@@ -9,6 +9,7 @@ resource "aws_instance" "example" {
   ami           = "ami-0353305cd3c20be96"
   instance_type = "t2.micro"
   subnet_id     = each.value
+  key_name = var.key_pair_name
   vpc_security_group_ids = [aws_security_group.allow_ssh.id]
   associate_public_ip_address = true
 }
