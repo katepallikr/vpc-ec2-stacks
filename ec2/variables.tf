@@ -1,3 +1,6 @@
+# Copyright (c) HashiCorp, Inc.
+# SPDX-License-Identifier: MPL-2.0
+
 variable "network" {
   description = "Information about network objects declared elsewhere."
   type = object({
