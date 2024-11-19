@@ -9,7 +9,7 @@ deployment "production" {
   variables = {
     region              = "us-west-2"
     availability_zones  = ["us-west-2a", "us-west-2b", "us-west-2c"]
-    role_arn            = "<specify the ARN of the role Terraform should assume using the identity token>"
+    role_arn            = "arn:aws:iam::798714130597:role/stacks-hashicorp-kranthi-Demo-vpc-ec2-stack"
     identity_token_file = identity_token.aws.jwt_filename
     default_tags      = { stacks-preview-example = "vpc-ec2-stack" }
 
