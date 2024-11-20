@@ -6,7 +6,7 @@ identity_token "aws" {
 }
 
 deployment "production" {
-  variables = {
+  inputs = {
     region              = "us-west-2"
     availability_zones  = ["us-west-2a", "us-west-2b", "us-west-2c"]
     role_arn            = "arn:aws:iam::798714130597:role/stacks-hashicorp-kranthi-Demo-vpc-ec2-stack"
